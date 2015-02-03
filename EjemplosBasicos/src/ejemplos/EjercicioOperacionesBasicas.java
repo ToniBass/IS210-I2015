@@ -7,7 +7,7 @@ public class EjercicioOperacionesBasicas {
 	public static void main(String[] args){
 		int a;
 		int b;
-		int resultado;
+		float resultado;
 		String operador;
 		Scanner entrada = new Scanner(System.in);
 		System.out.println("Introduzca un entero:");
@@ -16,7 +16,7 @@ public class EjercicioOperacionesBasicas {
 		b = entrada.nextInt();
 		System.out.println("Introduzca el operador aritmetico:");
 		operador = entrada.next();
-		switch (operador){
+		switch (operador){ // > JDK 1.7 (Java 7)
 			case "+":
 				resultado = a+b;
 				break;
@@ -27,7 +27,10 @@ public class EjercicioOperacionesBasicas {
 				resultado = a*b;
 				break;
 			case "/":
-				resultado = a/b;
+				if (b != 0)
+					resultado = (float)a/(float)b;
+				else
+					resultado = 0;
 				break;
 			case "%":
 				resultado = a%b;

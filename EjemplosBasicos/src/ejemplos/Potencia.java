@@ -13,7 +13,8 @@ public class Potencia {
 		System.out.println("Introduzca el exponente: ");
 		exponente = entrada.nextInt(); 
 		for(int i=0; i<exponente; i++){
-			resultado *= base;
+			resultado *= base; 
+			//resultado = resultado * base;			
 		}
 		System.out.println("Resultado de " + 
 					base + " ^ "+ 
