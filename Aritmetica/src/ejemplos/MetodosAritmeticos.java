@@ -2,7 +2,9 @@ package ejemplos;
 
 public class MetodosAritmeticos{
 	static int sumar(int a,int b){
-		return a+b;
+		int suma = a + b;
+		a = 23;
+		return suma;
 	}
 	static int restar(int a,int b){
 		return a-b;

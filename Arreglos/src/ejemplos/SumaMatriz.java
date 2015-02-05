@@ -7,9 +7,7 @@ public class SumaMatriz{
 		int a[][] = new int[3][3];
 		int b[][] = new int[3][3];
 		Scanner entrada = new Scanner(System.in);
-		System.out.println("Ingrese N:");
-		int n = entrada.nextInt();
-		int resultado[][] = new int[n][m];
+		int resultado[][] = new int[3][3];
 
 		//Asignar valores
 		for (int i = 0;i<a.length;i++){
@@ -49,5 +47,6 @@ public class SumaMatriz{
 			}
 			System.out.print("\n");
 		}
+		entrada.close();
 	}
 }
