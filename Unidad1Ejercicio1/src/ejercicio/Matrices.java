@@ -3,12 +3,12 @@ package ejercicio;
 import java.util.Scanner;
 
 public class Matrices {
-	
 	static Scanner entrada = new Scanner(System.in);
+	
 	//Ingresar los datos de una matriz
 	static void ingresarDatos(int matriz[][]){
 		for (int i=0; i<matriz.length;i++){
-			for (int j=0; j<matriz[i].length;j++){
+			for (int j=0; j<matriz[0].length;j++){
 				System.out.print("Valor ["+i+"]["+j+"]:");
 				matriz[i][j] = entrada.nextInt();
 			}
@@ -26,9 +26,9 @@ public class Matrices {
 	}
 	
 	static int[][] sumarMatrices(int matrizX[][],int matrizY[][]){
-		int resultado[][] = new int[matrizX.length][matrizX[0].length];		
+		int resultado[][] = new int[matrizY.length][matrizY[0].length];		
 		for (int i = 0;i<matrizX.length;i++){
-			for (int j = 0;j<matrizX[i].length;j++){
+			for (int j = 0;j<matrizX[0].length;j++){
 				resultado[i][j] = matrizX[i][j]+matrizY[i][j];
 			}
 		}
@@ -39,7 +39,7 @@ public class Matrices {
 		int matrizTraspuesta[][] = new int[matriz[0].length][matriz.length];
 		for (int i=0;i<matrizTraspuesta.length;i++){
 			for (int j=0;j<matrizTraspuesta[i].length;j++){
-				matrizTraspuesta[i][j] = matriz[j][i]; 	
+				matrizTraspuesta[i][j] = matriz[j][i];
 			}
 		}
 		return matrizTraspuesta;
@@ -101,6 +101,6 @@ public class Matrices {
 					System.err.println("Opción inválida");
 					break;
 			}
-		}while(opcion!=0);
+		}while(opcion!=0);		
 	}
 }
