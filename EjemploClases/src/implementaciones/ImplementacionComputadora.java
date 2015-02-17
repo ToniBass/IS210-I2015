@@ -1,4 +1,6 @@
-package clases;
+package implementaciones;
+
+import clases.Computadora;
 
 public class ImplementacionComputadora{
 	public static void main(String args[]){

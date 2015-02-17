@@ -2,6 +2,8 @@ package codigo;
 
 public class HolaMundo{
 	public static void main(String args[]){
-		System.out.println("Hola Mundo");
+		String frase = "Hola Mundo";
+		String partes[] = frase.split(" ");
+		System.out.println(partes[0]+" - "+ partes[1]);
 	}
 }
