@@ -60,9 +60,6 @@ public class Fecha{
 		if (anio <=0 || anio >=9999)
 			return false;
 		//Si no entra en ninguna condicion entonces el valor es correcto
-		return true;
-	
+		return true;	
 	}
-	
-	
 }
