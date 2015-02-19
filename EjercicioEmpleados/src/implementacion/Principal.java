@@ -9,7 +9,7 @@ public class Principal{
 	static Scanner entrada = new Scanner(System.in);
 	static Empleado empleados[];
 	
-	public static void mostrarDatos(Empleado empleados[]){
+	public static void mostrarDatos(){
 		System.out.println("---------------------------------------------------------------");
 		System.out.println("A continuacion se muestra los registros previamente ingresados:");
 		for (int i = 0; i < empleados.length; i++){
@@ -73,8 +73,8 @@ public class Principal{
 		for (int i = 0; i < empleados.length; i++){
 			empleados[i] = new Empleado(); //Instancia
 			ingresarEmpleado(i);
-		}		
-		mostrarDatos(empleados);	
+		}
+		mostrarDatos();	
 	
 		
 		int opcion = 0;
@@ -89,12 +89,11 @@ public class Principal{
 			
 			switch  (opcion){
 				case 1: //Opcion para mostrar la lista de empleados.
-					mostrarDatos(empleados);
+					mostrarDatos();
 					break;
 				case 2: //Opcion para modificar la lista de empleados.
 					System.out.println("Que empleado del 0 al "+ (cantidadEmpleados-1) +" quiere modificar? ");
 					empleadoModificar = entrada.nextInt();
-					
 					ingresarEmpleado(empleadoModificar);
 					break;
 			}
