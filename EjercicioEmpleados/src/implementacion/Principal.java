@@ -45,9 +45,12 @@ public class Principal{
 		
 		System.out.print("Profesion: ");
 		empleados[indice].establecerProfesion(entrada.next());
+		Fecha fechaIngreso; 
+		do{
+			System.out.print("Fecha de ingreso (formato DD/MM/YYYY): ");
+			fechaIngreso = new Fecha(entrada.next());
+		}while(fechaIngreso.verificarFecha() == false);
 		
-		System.out.print("Fecha de ingreso (formato DD/MM/YYYY): ");
-		Fecha fechaIngreso = new Fecha(entrada.next());
 		empleados[indice].establecerFechaIngreso(fechaIngreso);
 		
 		System.out.print("Sueldo base: ");
