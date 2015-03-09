@@ -10,10 +10,10 @@ public class Ventana{
 	public Ventana(){		
 		ventana = new JFrame(); //Instanciacion de la ventana
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Definir que al hacer click en la X el programa finalice
-		//ventana.setSize(ANCHO_VENTANA, ALTO_VENTANA);//Establecer dimensiones
-		ventana.setBounds(0, 0, 100, 100);
-		//ventana.setLocationRelativeTo(null);//Centrar la ventana en la pantalla
-		ventana.setAlwaysOnTop(true);
+		ventana.setSize(ANCHO_VENTANA, ALTO_VENTANA);//Establecer dimensiones
+		//ventana.setBounds(0, 0, 100, 100);
+		ventana.setLocationRelativeTo(null);//Centrar la ventana en la pantalla
+		//ventana.setAlwaysOnTop(true);
 		//ventana.setResizable(false);
 		ventana.setTitle("Titulo de la ventana"); //Establecer el titulo
 		ventana.setVisible(true); //Mostrar ventana
