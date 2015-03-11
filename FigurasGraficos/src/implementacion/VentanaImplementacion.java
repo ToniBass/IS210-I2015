@@ -52,10 +52,10 @@ public class VentanaImplementacion extends Canvas{
 	public static void main(String[] args) {
 		new VentanaImplementacion();
 	}
-	
+
 	@Override
-	public void paint(Graphics g){
-		Graphics2D g2D = (Graphics2D)g;
+	public void paint(Graphics graficos){
+		Graphics2D g2D = (Graphics2D)graficos;
 		
 		for(int i=0;i<circulos.size();i++){
 			circulos.get(i).dibujar(g2D);
@@ -65,5 +65,4 @@ public class VentanaImplementacion extends Canvas{
 			rectangulos.get(i).dibujar(g2D);
 		}
 	}
-
 }

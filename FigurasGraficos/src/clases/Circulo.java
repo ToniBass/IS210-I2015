@@ -17,8 +17,9 @@ public class Circulo extends Figura {
 
 	@Override
 	public void dibujar(Graphics2D g2D){
-		/*int[] codigoColor = obtenerRGB();
-		g2D.setColor(new Color(codigoColor[0],codigoColor[1],codigoColor[2]));*/
+		int[] codigoColor = obtenerRGB();
+		g2D.setColor(new Color(codigoColor[0],codigoColor[1],codigoColor[2]));
+		
 		if (relleno)
 			g2D.fillOval(posicionX, posicionY, radio*2, radio*2);
 		else

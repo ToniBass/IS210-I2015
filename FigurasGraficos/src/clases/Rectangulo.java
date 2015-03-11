@@ -20,8 +20,10 @@ public class Rectangulo extends Figura {
 	
 	@Override
 	public void dibujar(Graphics2D g2D){
-		/*int[] codigoColor = obtenerRGB();
-		g2D.setColor(new Color(codigoColor[0],codigoColor[1],codigoColor[2]));*/
+		int[] codigoColor = obtenerRGB();
+		
+		g2D.setColor(new Color(codigoColor[0],codigoColor[1],codigoColor[2]));
+		//g2D.setColor(new Color(r,g,b));
 		if (relleno)
 			g2D.fillRect(posicionX, posicionY, largo, ancho);
 		else 

@@ -1,6 +1,6 @@
 package clases;
 
-public class Figura {
+public abstract class Figura {
 	protected int posicionX;
 	protected int posicionY;
 	protected String color;
@@ -16,7 +16,7 @@ public class Figura {
 		this.relleno = relleno;
 	}
 	
-	public void dibujar(){}
+	public abstract void dibujar();
 
 	public int getPosicionX() {
 		return posicionX;

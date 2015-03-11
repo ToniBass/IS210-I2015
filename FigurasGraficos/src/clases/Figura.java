@@ -7,6 +7,11 @@ public class Figura {
 	protected int posicionY;
 	protected String color;
 	protected boolean relleno;
+	//protected int codigosColores[]=new int[3];
+	/*protected int r;
+	protected int g;
+	protected int b;*/
+	
 	
 	public Figura(int posicionX, 
 			int posicionY, 
