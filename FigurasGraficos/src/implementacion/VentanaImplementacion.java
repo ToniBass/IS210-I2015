@@ -54,8 +54,8 @@ public class VentanaImplementacion extends Canvas{
 	}
 
 	@Override
-	public void paint(Graphics graficos){
-		Graphics2D g2D = (Graphics2D)graficos;
+	public void paint(Graphics g){
+		Graphics2D g2D = (Graphics2D)g;
 		
 		for(int i=0;i<circulos.size();i++){
 			circulos.get(i).dibujar(g2D);
