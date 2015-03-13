@@ -27,27 +27,35 @@ public class Principal {
 		m2 = new Maestro("Laura","Perez",66,88132);
 		m3 = new Maestro("Mario","Mendez",30,92132);
 		
-		personas.add(a1);
-		personas.add(m3);
-		personas.add(a3);
+		personas.add(a1);				
 		personas.add(m1);
 		personas.add(a2);
 		personas.add(m2);
+		personas.add(a3);
+		personas.add(m3);
+		
+		/*for(int i = 0; i< personas.size();i++){
+			//System.out.println(personas.get(i).toString());
+			if(personas.get(i) instanceof Alumno)
+				System.out.println("Instancia de Alumno");
+			else if(personas.get(i) instanceof Maestro)
+				System.out.println("Instancia de Maestro");
+		}*/
 		
 		mostrarAlumnos();
 		mostrarMaestros();
 	}
 	
 	public void mostrarAlumnos(){
-		System.out.println("-----Listado de alumnos-----");
-		for(int i = 0;i<personas.size();i++){
+		System.out.println("---Alumnos registrados---");
+		for(int i = 0; i< personas.size();i++){
 			if(personas.get(i) instanceof Alumno)
 				System.out.println(personas.get(i).toString());
 		}
 	}
 	public void mostrarMaestros(){
-		System.out.println("-----Listado de maestros-----");
-		for(int i = 0;i<personas.size();i++){
+		System.out.println("---Maestros registrados---");
+		for(int i = 0; i< personas.size();i++){
 			if(personas.get(i) instanceof Maestro)
 				System.out.println(personas.get(i).toString());
 		}
@@ -56,5 +64,4 @@ public class Principal {
 	public static void main(String[] args) {
 		new Principal();
 	}
-
 }
