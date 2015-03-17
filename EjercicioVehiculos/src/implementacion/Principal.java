@@ -30,7 +30,7 @@ public class Principal{
 		
 		//Hacer cast de clases hijas a clases padre
 		v1 = (Vehiculo)c1;//Hija->Padre
-		//c3 = (Carro)v3;//Padre->Hijo No se puede hacer el cast
+		c3 = (Carro)v3;//Padre->Hijo No se puede hacer el cast
 		
 		
 		//Instanciar objetos de clases padre utilizando
