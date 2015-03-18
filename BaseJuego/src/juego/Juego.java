@@ -130,6 +130,7 @@ public class Juego extends Canvas implements KeyListener{
             	jugador.setVelocidad(5);
                 break;
             case KeyEvent.VK_CONTROL:
+            	System.out.println("Detener Vehiculo");
             	jugador.setVelocidad(0);
             	break;
         }
