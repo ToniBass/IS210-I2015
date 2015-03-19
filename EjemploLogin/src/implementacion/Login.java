@@ -30,6 +30,7 @@ public class Login {
 		ubicarComponentes();
 		eventos();
 		agregarComponentes();
+		
 		ventana.setVisible(true); //Mostrar ventana
 	}
 	
@@ -53,12 +54,24 @@ public class Login {
 		//.....
 	}
 	
+	class X implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
+	
+	//Clase Anonima
 	public void eventos(){
 		btnIngresar.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null, 
-						"Usuario: " + txtUsuario.getText());
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null,
+						"Nombre: " +txtUsuario.getText() +
+						"\nPassword: "+new String(txtContrasena.getPassword()));				
 			}
 		});
 	}
