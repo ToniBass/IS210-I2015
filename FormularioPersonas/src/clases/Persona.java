@@ -5,7 +5,7 @@ public class Persona {
 	private String apellido;
 	private int edad;
 	private String genero;
-	
+
 	public Persona(String nombre, 
 			String apellido, 
 			int edad, 

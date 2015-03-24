@@ -35,6 +35,7 @@ public class Formulario {
 	private JButton btnEliminar;
 	private JTextArea txtAreaResultado;
 	private JScrollPane scroll;
+	
 	private ArrayList<Persona> personas;
 	
 	public Formulario(){
@@ -59,7 +60,7 @@ public class Formulario {
 	}
 	public void inicializarObjetos(){
 		personas = new ArrayList<Persona>();
-		
+				
 		//Instanciar Etiquetas
 		lblTituloDatos = new JLabel("Datos Personales");
 		lblResultado = new JLabel("Resultado");
@@ -118,8 +119,8 @@ public class Formulario {
 		
 		btnAgregar.setToolTipText("Si da click aqui se agregara un registro");
 		btnModificar.setToolTipText("Modificar un registro");
-		btnEliminar.setToolTipText("Eliminar Registro");
-		
+		btnEliminar.setToolTipText("Eliminar registro");
+	
 		txtAreaResultado.setText("Nombre\tEdad\tGenero");
 	}
 	
@@ -153,13 +154,13 @@ public class Formulario {
 		btnAgregar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				agregarInformacion();
+				agregarRegistro();
 			}
 		});	
 		btnModificar.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				modificarInformacion();
+				modificarRegistro();
 			}
 		});
 		btnEliminar.addActionListener(new ActionListener() {
@@ -168,43 +169,41 @@ public class Formulario {
 				eliminarRegistro();
 			}
 		});
+
 	}
 	
-	public void agregarInformacion(){
-		personas.add(
-				new Persona(
-					txtNombre.getText(),
-					txtApellido.getText(),
-					Integer.valueOf(txtEdad.getText()),
-					txtGenero.getText()
-		));
-		
-		cargarInformacion();
+	public void agregarRegistro(){
+		personas.add(new Persona(
+				txtNombre.getText(),
+				txtApellido.getText(),
+				Integer.valueOf(txtEdad.getText()),
+				txtGenero.getText()
+				));
+		mostrarInformacion();
 	}
-
-	public void modificarInformacion(){
-		int indice = Integer.valueOf(JOptionPane.showInputDialog(
-				"Con que indice desea modificar la informacion (0-"+(personas.size()-1)+"): "));
-		
-		personas.set(indice,
-				new Persona(
-					txtNombre.getText(),
-					txtApellido.getText(),
-					Integer.valueOf(txtEdad.getText()),
-					txtGenero.getText()
-		));
-		cargarInformacion();
+	
+	public void modificarRegistro(){
+		int indice = Integer.valueOf(
+				JOptionPane.showInputDialog(
+						"Que idice desea modificar (0-"+(personas.size()-1)+")"));
+		personas.set(indice,new Persona(
+				txtNombre.getText(),
+				txtApellido.getText(),
+				Integer.valueOf(txtEdad.getText()),
+				txtGenero.getText()
+				));
+		mostrarInformacion();
 	}
 	
 	public void eliminarRegistro(){
-		int indice = Integer.valueOf(JOptionPane.showInputDialog(
-				"Que registro desea eliminar (0-"+(personas.size()-1)+"): "));
+		int indice = Integer.valueOf(
+				JOptionPane.showInputDialog(
+						"Que idice desea eliminar (0-"+(personas.size()-1)+")"));
 		personas.remove(indice);
-		cargarInformacion();
+		mostrarInformacion();
 	}
 	
-	
-	public void cargarInformacion(){
+	public void mostrarInformacion(){
 		txtAreaResultado.setText("Nombre\tEdad\tGenero");
 		for(int i=0;i<personas.size();i++){
 			txtAreaResultado.append("\n"+
@@ -213,7 +212,8 @@ public class Formulario {
 					personas.get(i).getEdad()+"\t"+
 					personas.get(i).getGenero());
 		}
-		lblCantidadPersonas.setText("Cantidad Personas: "+personas.size());
+		lblCantidadPersonas.setText("Cantidad de personas: "+
+					personas.size());
 	}
 	
 	public static void main(String[] args){
