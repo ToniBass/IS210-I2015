@@ -2,19 +2,23 @@ package implementacion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import clases.Persona;
+
 public class Formulario {		
 	private JFrame ventana;
 	private final int ANCHO_VENTANA= 530;//Constante para el ancho de la ventana
-	private final int ALTO_VENTANA = 240;//Constante para el alto de la ventana
+	private final int ALTO_VENTANA = 260;//Constante para el alto de la ventana
 	private JLabel lblNombre;
 	private JLabel lblApellido;
 	private JLabel lblEdad;
@@ -28,9 +32,10 @@ public class Formulario {
 	private JTextField txtGenero;
 	private JButton btnAgregar;
 	private JButton btnModificar;
+	private JButton btnEliminar;
 	private JTextArea txtAreaResultado;
 	private JScrollPane scroll;
-	private int cantidadPersonas = 0;
+	private ArrayList<Persona> personas;
 	
 	public Formulario(){
 		inicializarVentana();
@@ -53,6 +58,8 @@ public class Formulario {
 		ventana.setLayout(null); //Importante, si se omite esta linea no se podra utilizar la metodologia de coordenadas
 	}
 	public void inicializarObjetos(){
+		personas = new ArrayList<Persona>();
+		
 		//Instanciar Etiquetas
 		lblTituloDatos = new JLabel("Datos Personales");
 		lblResultado = new JLabel("Resultado");
@@ -69,6 +76,7 @@ public class Formulario {
 		//Instanciar Botones
 		btnAgregar = new JButton("Agregar");
 		btnModificar = new JButton("Modificar");
+		btnEliminar = new JButton("Eliminar");
 		//Instanciar Text Area
 		txtAreaResultado = new JTextArea();
 		//Instanciar el scroll para el TextArea
@@ -92,6 +100,7 @@ public class Formulario {
 		//Definir coordenadas para los botones
 		btnAgregar.setBounds(10, 145, 80, 30);
 		btnModificar.setBounds(95, 145, 100, 30);
+		btnEliminar.setBounds(10, 180, 80, 30);
 		
 		scroll.setBounds(200,25,300,150);
 	}
@@ -105,9 +114,11 @@ public class Formulario {
 		//Parametrizacion de botones
 		btnAgregar.setMnemonic(KeyEvent.VK_A);
 		btnModificar.setMnemonic(KeyEvent.VK_M);
+		btnEliminar.setMnemonic(KeyEvent.VK_E);
 		
 		btnAgregar.setToolTipText("Si da click aqui se agregara un registro");
 		btnModificar.setToolTipText("Modificar un registro");
+		btnEliminar.setToolTipText("Eliminar Registro");
 		
 		txtAreaResultado.setText("Nombre\tEdad\tGenero");
 	}
@@ -133,6 +144,7 @@ public class Formulario {
 		//Agregar botones
 		ventana.add(btnAgregar);
 		ventana.add(btnModificar);
+		ventana.add(btnEliminar);
 		
 	}
 
@@ -147,19 +159,61 @@ public class Formulario {
 		btnModificar.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-			
+				modificarInformacion();
+			}
+		});
+		btnEliminar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				eliminarRegistro();
 			}
 		});
 	}
 	
 	public void agregarInformacion(){
-		txtAreaResultado.append("\n"+
-					txtNombre.getText()+" "+
-					txtApellido.getText()+"\t"+
-					txtEdad.getText()+"\t"+
-					txtGenero.getText());
-		cantidadPersonas++;
-		lblCantidadPersonas.setText("Cantidad Personas: "+cantidadPersonas);
+		personas.add(
+				new Persona(
+					txtNombre.getText(),
+					txtApellido.getText(),
+					Integer.valueOf(txtEdad.getText()),
+					txtGenero.getText()
+		));
+		
+		cargarInformacion();
+	}
+
+	public void modificarInformacion(){
+		int indice = Integer.valueOf(JOptionPane.showInputDialog(
+				"Con que indice desea modificar la informacion (0-"+(personas.size()-1)+"): "));
+		
+		personas.set(indice,
+				new Persona(
+					txtNombre.getText(),
+					txtApellido.getText(),
+					Integer.valueOf(txtEdad.getText()),
+					txtGenero.getText()
+		));
+		cargarInformacion();
+	}
+	
+	public void eliminarRegistro(){
+		int indice = Integer.valueOf(JOptionPane.showInputDialog(
+				"Que registro desea eliminar (0-"+(personas.size()-1)+"): "));
+		personas.remove(indice);
+		cargarInformacion();
+	}
+	
+	
+	public void cargarInformacion(){
+		txtAreaResultado.setText("Nombre\tEdad\tGenero");
+		for(int i=0;i<personas.size();i++){
+			txtAreaResultado.append("\n"+
+					personas.get(i).getNombre()+"\t"+
+					personas.get(i).getApellido()+"\t"+
+					personas.get(i).getEdad()+"\t"+
+					personas.get(i).getGenero());
+		}
+		lblCantidadPersonas.setText("Cantidad Personas: "+personas.size());
 	}
 	
 	public static void main(String[] args){
