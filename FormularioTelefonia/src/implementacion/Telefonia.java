@@ -3,6 +3,8 @@ package implementacion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -45,6 +47,9 @@ public class Telefonia {
 	private JButton btnModificar;
 	private JButton btnEliminar;
 	private JButton btnLimpiar;
+	
+	private String strPatronIdentidad = "[0-9]{4}-[0-9]{4}-[0-9]{5}";
+	private String strPatronTelefono = "[0-9]{4}-[0-9]{4}";
 	
 	private ArrayList<LineaTelefonica> lineasTelefonicas;
 	
@@ -292,6 +297,8 @@ public class Telefonia {
 	
 	public String validarCampos(){
 		String errores="";
+		
+		//Validacion de campos vacios
 		if(txtNombre.getText().isEmpty())
 			errores+="El campo Nombre esta vacio.\n";
 		if(txtIdentidad.getText().isEmpty())
@@ -300,16 +307,43 @@ public class Telefonia {
 			errores+="El campo Telefono esta vacio.\n";
 		if(txtMarca.getText().isEmpty())
 			errores+="El campo Marca esta vacio.\n";
-		if(!(rbtTigo.isSelected() || 
+		if(grupoOperadoras.getSelection()==null)
+			errores+="Debe seleccionar un operador.\n";
+		/*if(!(rbtTigo.isSelected() || 
 			rbtClaro.isSelected() ||
 			rbtHondutel.isSelected()))
-			errores+="Debe seleccionar un operador.\n";
+			errores+="Debe seleccionar un operador.\n";*/
 		if(!(chk2G.isSelected() || 
 			chk3G.isSelected() ||
 			chk4G.isSelected()))
 			errores+="Debe seleccionar al menos una tecnologia.\n";
 		
+		//Validaciones espeaciales
+		/*if(txtTelefono.getText().length()!=8)
+			errores+="El telefono debe ser de 8 digitos.\n";
+		
+		try{
+			Integer.valueOf(txtTelefono.getText());
+		}catch(NumberFormatException excepcion){
+			errores+="El telefono debe ser un campo numerico.\n";
+			//excepcion.printStackTrace();
+		}*/
+		
+		//Validacion de identidad con expresiones regulares
+		if(!validarCadena(strPatronIdentidad, txtIdentidad.getText()))
+			errores+="La identidad debe tener el formato 9999-9999-99999.\n";
+		
+		
+		if(!validarCadena(strPatronTelefono, txtTelefono.getText()))
+			errores+="El telefono debe tener el formato 9999-9999.\n";
+		
 		return errores;
+	}
+	
+	public boolean validarCadena(String patron, String cadena){
+		Pattern pattern = Pattern.compile(patron);
+		Matcher	matcher = pattern.matcher(cadena);
+		return matcher.matches();
 	}
 	
 	public static void main(String[] args) {
