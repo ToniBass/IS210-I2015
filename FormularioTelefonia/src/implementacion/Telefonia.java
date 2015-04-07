@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -134,6 +135,8 @@ public class Telefonia {
 		lblOperador.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblMarca.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblTecnologia.setHorizontalAlignment(SwingConstants.RIGHT);
+		
+		txtInformacion.setEditable(false);
 	}
 	
 	public void agregarComponentes(){
@@ -147,6 +150,7 @@ public class Telefonia {
 		ventana.add(txtNombre);
 		ventana.add(txtIdentidad);
 		ventana.add(txtTelefono);
+		ventana.add(txtMarca);
 		
 		ventana.add(rbtTigo);
 		ventana.add(rbtClaro);
@@ -155,8 +159,6 @@ public class Telefonia {
 		ventana.add(chk3G);
 		ventana.add(chk2G);
 		ventana.add(chk4G);
-		
-		ventana.add(txtMarca);
 		
 		ventana.add(btnGuardar);
 		ventana.add(btnModificar);
@@ -174,9 +176,33 @@ public class Telefonia {
 				agregarRegistro();
 			}
 		});
+		btnModificar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				modificarRegistro();
+			}
+		});
+		btnEliminar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				eliminarRegistro();
+			}
+		});
+		btnLimpiar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				limpiarComponentes();
+			}
+		});
 	}
 	
 	public void agregarRegistro(){
+		String errores = validarCampos();
+		if (!errores.equals("")){
+			JOptionPane.showMessageDialog(null, errores);
+			return;
+		}
+			
 		String operador="";
 		if (rbtTigo.isSelected())
 			operador = "Tigo";
@@ -204,10 +230,86 @@ public class Telefonia {
 		mostrarInformacion();
 	}
 	
+	public void modificarRegistro(){
+		int indice = Integer.valueOf(
+				JOptionPane.showInputDialog("Que indice desea modificar?(0 - "+
+					(lineasTelefonicas.size()-1)+")"));
+		
+		String operador="";
+		if (rbtTigo.isSelected())
+			operador = "Tigo";
+		else if (rbtClaro.isSelected())
+			operador = "Claro";
+		else if (rbtHondutel.isSelected())
+			operador = "Hondutel";
+		
+		ArrayList<String> tecnologias = new ArrayList<String>();
+		if (chk2G.isSelected())
+			tecnologias.add("2G");
+		if (chk3G.isSelected())
+			tecnologias.add("3G");
+		if (chk4G.isSelected())
+			tecnologias.add("4G");
+		
+		lineasTelefonicas.set(indice,new LineaTelefonica(
+					txtNombre.getText(),
+					txtIdentidad.getText(),
+					txtTelefono.getText(),
+					operador,
+					txtMarca.getText(),
+					tecnologias
+				));
+		mostrarInformacion();
+	}
+	
+	public void eliminarRegistro(){
+		int indice = Integer.valueOf(
+				JOptionPane.showInputDialog("Que indice desea eliminar?(0 - "+
+					(lineasTelefonicas.size()-1)+")"));
+		lineasTelefonicas.remove(indice);
+		mostrarInformacion();
+	}
+	
+	public void limpiarComponentes(){
+		txtNombre.setText("");//Se puede utilizar null tambien
+		txtIdentidad.setText("");
+		txtTelefono.setText("");
+		txtMarca.setText("");
+		grupoOperadoras.clearSelection();
+		/*rbtTigo.setSelected(false);
+		rbtClaro.setSelected(false);
+		rbtHondutel.setSelected(false);*/
+		chk2G.setSelected(false);
+		chk3G.setSelected(false);
+		chk4G.setSelected(false);
+	}
+	
 	public void mostrarInformacion(){
 		txtInformacion.setText("Nombre\tIdentidad\tTelefono\tOperador\tMarca\tTecnologias");
 		for (int i=0;i<lineasTelefonicas.size();i++)
 			txtInformacion.append("\n"+lineasTelefonicas.get(i).toString());
+	}
+	
+	public String validarCampos(){
+		String errores="";
+		if(txtNombre.getText().isEmpty())
+			errores+="El campo Nombre esta vacio.\n";
+		if(txtIdentidad.getText().isEmpty())
+			errores+="El campo Identidad esta vacio.\n";
+		if(txtTelefono.getText().isEmpty())
+			errores+="El campo Telefono esta vacio.\n";
+		if(txtMarca.getText().isEmpty())
+			errores+="El campo Marca esta vacio.\n";
+		if(!(rbtTigo.isSelected() || 
+			rbtClaro.isSelected() ||
+			rbtHondutel.isSelected()))
+			errores+="Debe seleccionar un operador.\n";
+		if(!(chk2G.isSelected() || 
+			chk3G.isSelected() ||
+			chk4G.isSelected()))
+			errores+="Debe seleccionar al menos una tecnologia.\n";
+		
+		return errores;
 	}
 	
 	public static void main(String[] args) {
@@ -215,4 +317,3 @@ public class Telefonia {
 	}
 
 }
-

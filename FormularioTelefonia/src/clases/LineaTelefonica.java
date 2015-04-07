@@ -71,7 +71,8 @@ public class LineaTelefonica {
 	public void setTecnologias(ArrayList<String> tecnologias) {
 		this.tecnologias = tecnologias;
 	}
-	
+
+	@Override
 	public String toString(){
 		String strTecnologias="";
 		for (int i=0;i<tecnologias.size();i++)
@@ -83,8 +84,4 @@ public class LineaTelefonica {
 				marca + "\t" +
 				strTecnologias;
 	}
-	
-	
-	
-	
 }
