@@ -64,6 +64,8 @@ public class Juego extends Canvas implements KeyListener{
 		//Es mas conveniente almacenar las imagenes en un hashmap para poder darle un alias.
 		try {
 			imagenes.put("auto", ImageIO.read(getClass().getResource("/recursos/auto.png")));
+			imagenes.put("auto_furioso", ImageIO.read(getClass().getResource("/recursos/auto2.png")));
+			imagenes.put("auto_mas_furioso", ImageIO.read(getClass().getResource("/recursos/auto3.png")));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -127,8 +129,14 @@ public class Juego extends Canvas implements KeyListener{
         switch(e.getKeyCode()){
             case KeyEvent.VK_SPACE://Cuando el usuario presiona la tecla espacio
             	System.out.println("Presiono la tecla espacio");
+            	jugador.setImagen("auto_furioso");
             	jugador.setVelocidad(5);
                 break;
+            case KeyEvent.VK_F:
+            	System.out.println("Presiono la tecla F de fast");
+            	jugador.setImagen("auto_mas_furioso");
+            	jugador.setVelocidad(8);
+            	break;
             case KeyEvent.VK_CONTROL:
             	System.out.println("Detener Vehiculo");
             	jugador.setVelocidad(0);
@@ -141,6 +149,12 @@ public class Juego extends Canvas implements KeyListener{
         switch(e.getKeyCode()){
             case KeyEvent.VK_SPACE://Cuando el usuario suelta la tecla espacio
             	System.out.println("Solto la tecla espacio");
+            	jugador.setImagen("auto");
+            	jugador.setVelocidad(2);
+            break;
+            case KeyEvent.VK_F:
+            	System.out.println("Solto la tecla F de fast");
+            	jugador.setImagen("auto");
             	jugador.setVelocidad(2);
             break;
         }
