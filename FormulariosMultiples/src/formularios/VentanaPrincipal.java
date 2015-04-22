@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JToolBar;
+import javax.swing.ImageIcon;
 
 public class VentanaPrincipal extends JFrame {
 
@@ -83,7 +84,7 @@ public class VentanaPrincipal extends JFrame {
 		internalFrame.setMaximizable(true);
 		internalFrame.setIconifiable(true);
 		internalFrame.setClosable(true);
-		internalFrame.setBounds(33, 51, 234, 153);
+		internalFrame.setBounds(35, 59, 234, 153);
 		contentPane.add(internalFrame);
 		internalFrame.getContentPane().setLayout(null);
 		
@@ -92,10 +93,15 @@ public class VentanaPrincipal extends JFrame {
 		internalFrame.getContentPane().add(btnClickAqui);
 		
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(0, 0, 434, 33);
+		toolBar.setBounds(0, 0, 434, 45);
 		contentPane.add(toolBar);
 		
-		JButton btnAbrir = new JButton("Abrir");
+		JButton btnAbrir = new JButton("");
+		btnAbrir.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/imagenes/open.png")));
+		btnAbrir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		toolBar.add(btnAbrir);
 		//internalFrame.setVisible(true);
 	}
