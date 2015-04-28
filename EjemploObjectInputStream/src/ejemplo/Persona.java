@@ -1,10 +1,9 @@
-package clases;
+package ejemplo;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.Serializable;
 
-public class Persona {
+//Serializacion
+public class Persona implements Serializable{
 	private String nombre;
 	private String apellido;
 	private int edad;

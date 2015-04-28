@@ -51,4 +51,19 @@ public class Persona {
 	public void setGenero(String genero) {
 		this.genero = genero;
 	}
+	public void guardarPersona(){
+		try {
+			//El parametro true indica que se va a anexar informacion
+			BufferedWriter bufferedWriter = 
+					new BufferedWriter(new FileWriter("personas.csv",true));
+			bufferedWriter.write(nombre+","+
+								apellido+","+
+								edad+","+
+								genero);
+			bufferedWriter.newLine();			
+			bufferedWriter.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+	}
 }
